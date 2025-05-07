@@ -1,0 +1,74 @@
+﻿# =========================
+# .gitignore file for C# projects in JetBrains Rider
+# =========================
+
+# ===============
+# IDE and Editor
+# ===============
+# JetBrains Rider
+/.idea/
+*.sln.DotSettings.user
+*.csproj.DotSettings.user
+*.suo
+*.userprefs
+
+# Visual Studio
+*.user
+*.vs/
+*.ncrunchsolution
+*.ncrunchproject
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# MonoDevelop
+.monodevelop/
+
+# ===============
+# Build Artifacts
+# ===============
+[Bb]in/
+[Oo]bj/
+*.dll
+*.exe
+*.pdb
+*.mdb
+*.cache
+
+# ===============
+# Dependencies
+# ===============
+/packages/
+*.nupkg
+
+# ===============
+# Runtime Data
+# ===============
+*.log
+*.tmp
+*.temp
+
+# ===============
+# OS Files
+# ===============
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+# ===============
+# Customizable
+# ===============
+# Add any project-specific files or folders here
+# Example:
+# /custom-folder/
+# *.custom-extension
