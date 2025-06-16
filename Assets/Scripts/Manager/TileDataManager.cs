@@ -3,17 +3,19 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using CsvHelper;
+using Game;
 using UnityEngine;
 
 namespace Manager
 {
     public class TileDataManager
     {
-        private CharacterResources _characterResources = new CharacterResources();
+        private readonly CharacterResources _characterResources = new CharacterResources();
+        
 
-        public void ReadTileData()
+        public void ReadTileData(string path)
         {
-            string filePath = Path.Combine(Application.dataPath, "Resources/Data/character-data.csv");
+            string filePath = Path.Combine(Application.dataPath, path);
 
             try
             {

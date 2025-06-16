@@ -1,36 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-public class CharacterResources
+namespace Game
 {
-    private List<CharacterData> characterDataList = new List<CharacterData>();
-    private HashSet<string> componentList = new HashSet<string>();
-
-    public void AddCharacter(CharacterData characterData)
+    public class CharacterResources
     {
-        characterDataList.Add(characterData);
-    }
+        private readonly List<CharacterData> _characterDataList = new List<CharacterData>();
+        private Dictionary<string, int> _componentFrequency = new();
 
-    public void AddComponent(string component) { 
-        componentList.Add(component);
-    }
+        public void AddCharacter(CharacterData characterData)
+        {
+            _characterDataList.Add(characterData);
+            
+        }
 
-    public List<CharacterData> GetAllCharacters()
-    {
-        return characterDataList;
-    }
+        public void AddComponent(string component) {
+            if (!_componentFrequency.TryAdd(component, 1))
+                _componentFrequency[component]++;
+        }
 
-    public HashSet<string> GetComponents()
-    {
-        return componentList;
-    }
+        public List<CharacterData> GetAllCharacters()
+        {
+            return _characterDataList;
+        }
 
-    public int GetComponentCount()
-    {
-        return componentList.Count;
-    }
+        public Dictionary<string, int> GetComponents()
+        {
+            return _componentFrequency;
+        }
 
+        public int GetComponentCount()
+        {
+            return _componentFrequency.Count;
+        }
+
+    }
 }

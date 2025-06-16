@@ -62,6 +62,7 @@ namespace UI
                 if (!info.TileList.Contains(item.GetData()))
                 {
                     _tileItems.Remove(item);
+                    DOTween.Kill(item.GetComponent<RectTransform>());
                     Destroy(item.gameObject);
                 }
             }

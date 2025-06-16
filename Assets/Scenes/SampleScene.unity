@@ -1181,7 +1181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 774987954}
-  spawnTileCount: 13
+  gameConfig: {fileID: 11400000, guid: 50c6aa305577e1f41829bbd4f9ef3713, type: 2}
 --- !u!4 &1728920756
 Transform:
   m_ObjectHideFlags: 0

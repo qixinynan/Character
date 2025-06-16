@@ -6,21 +6,21 @@
         Error
     }
     public class Result
-    { 
-        public readonly ResultType Type;
-        public string Message;
+    {
+        private readonly ResultType _type;
+        public readonly string Message;
 
-        public static Result Ok = new Result(ResultType.Ok);
+        public static readonly Result Ok = new Result(ResultType.Ok);
 
         public Result(ResultType type, string msg = "")
         {
-            Type = type;
+            _type = type;
             Message = msg;
         }
 
         public bool IsOk()
         {
-            return Type == ResultType.Ok;
+            return _type == ResultType.Ok;
         }
     }
 }

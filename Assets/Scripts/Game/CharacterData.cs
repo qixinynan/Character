@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-public class CharacterData
+namespace Game
 {
-    public string Character { get; set; }
-    public string Traditional { get; set; }
-    public string Pinyin { get; set; }
-    public List<string> Components { get; set; }
+    public class CharacterData
+    {
+        public string Character { get; set; }
+        public string Traditional { get; set; }
+        public string Pinyin { get; set; }
+        public List<string> Components { get; set; }
+    }
 }

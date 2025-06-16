@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using Configs;
 using Game;
 using Game.GameRule;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Manager
     {
         public static GameManager Instance;
         public UIManager uiManager;
+        public GameConfig gameConfig;
 
         private readonly TileDataManager _tileDataManager = new TileDataManager();
         private readonly PlayerManager _playerManager = new PlayerManager();
@@ -33,7 +35,7 @@ namespace Manager
         private void Init()
         {
             // Init GameRule
-            _tileDataManager.ReadTileData();
+            _tileDataManager.ReadTileData(gameConfig.characterDataPath);
             _gameRule = new BasicGameRule();
             _gameRule.Init(_tileDataManager.GetCharacterResources());            
             _playerManager.Init(_gameRule);
