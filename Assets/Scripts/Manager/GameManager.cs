@@ -45,6 +45,8 @@ namespace Manager
             
             InitTiles();
             StartRound();
+            
+            
         }
         
         // 发牌
@@ -58,20 +60,27 @@ namespace Manager
             Debug.Log("GameManager.StartRound");
             var player = _playerManager.NextPlayer();
             player.StartRound();
-            player.OnRoundEnd = EndRound; // 注意是等于,不然越来越多
+            player.OnRoundEnd += EndRound; // 注意是等于,不然越来越多
             EventManager.OnAnyRoundStart?.Invoke();
         }
 
         void EndRound()
         {
             Debug.Log("GameManager.EndRound");
+            // 检测是否胜利
+            if (_gameRule.CheckWin(_playerManager.GetCurrentPlayer()))
+            {
+                EventManager.OnGameOver?.Invoke();
+            } 
+            
+            
             EventManager.OnAnyRoundEnd?.Invoke();
             StartRound();
         }
 
         void PlayTilesHandler(List<TileData> tiles)
         {
-            if (!_playerManager.IsPlayerRound())
+            if (!_playerManager.IsHumanPlayerRound())
             {
                 Debug.LogError("不在玩家回合");
                 return;

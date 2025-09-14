@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0356c70fa13b9e449be2a35dcc560baa, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  characterDataPath: Resources/Data/character-data.csv
+  characterDataPath: Data/character-data

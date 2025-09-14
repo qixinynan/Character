@@ -11,7 +11,7 @@ namespace Game.Player
         public readonly int Id;
         public List<TileData> HandTiles = new List<TileData>();
         private readonly IGameRule _gameRule;
-        public Action OnRoundEnd;
+        public event Action OnRoundEnd;
 
         protected BasePlayer(int id, IGameRule gameRule)
         {
@@ -19,7 +19,10 @@ namespace Game.Player
             _gameRule = gameRule;
         }
 
-        public abstract void StartRound();
+        public virtual void StartRound()
+        {
+            OnRoundEnd = null;
+        }
 
         private void AddTile(TileData tile)
         {
@@ -39,7 +42,7 @@ namespace Game.Player
                 UpdateTileUI(TileChangeInfo.PlayInfo(HandTiles, tile));
                 HandTiles.Remove(tile);
             }
-            OnRoundEnd.Invoke();
+            OnRoundEnd?.Invoke();
         }
         
         void UpdateTileUI(TileChangeInfo i)

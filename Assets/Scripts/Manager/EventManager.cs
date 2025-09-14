@@ -10,9 +10,10 @@ namespace Manager
     {
         // TODO: 修改成内部触发
         // public static UnityAction<TileData> OnTilePlayed;
-        public static UnityAction<List<TileData>> OnTilesPlayed;
+        public static Action<List<TileData>> OnTilesPlayed;
         public static Action<TileChangeInfo> OnTilesChanged;
         public static Action OnAnyRoundStart;
         public static Action OnAnyRoundEnd;
+        public static Action OnGameOver;
     }
 }

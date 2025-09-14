@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UI;
 using UnityEngine;
@@ -8,7 +9,15 @@ namespace Manager
     public class UIManager : MonoBehaviour
     {
         public TilePanel tilePanel;
+        public DialogPanel dialogPanel;
+        
         public Button playButton;
+        public static UIManager Instance;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
 
         private void Start()
         {
@@ -19,6 +28,11 @@ namespace Manager
         {
             // TODO: Filter out the case where no tiles are selected
             EventManager.OnTilesPlayed.Invoke(tilePanel.GetSelectedTiles().Select(e => e.GetData()).ToList());
+        }
+
+        public void ShowDialog(string msg)
+        {
+            dialogPanel.ShowDialog(msg); 
         }
     }
 }

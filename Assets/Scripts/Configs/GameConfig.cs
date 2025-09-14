@@ -6,6 +6,6 @@ namespace Configs
 
     public class GameConfig : ScriptableObject
     {
-        public string characterDataPath = "Resources/Data/character-data.csv";
+        public string characterDataPath = "Data/character-data";
     }
 }

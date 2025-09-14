@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Game.Player;
 using Util;
 
 namespace Game.GameRule
@@ -10,5 +11,6 @@ namespace Game.GameRule
 
         public int GetFirstGenerateTileCount();
         public Result IsTilesPlayable(List<TileData> tiles);
+        public bool CheckWin(BasePlayer player);
     }
 }

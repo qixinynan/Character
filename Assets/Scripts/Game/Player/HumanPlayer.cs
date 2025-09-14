@@ -11,6 +11,7 @@ namespace Game.Player
 
         public override void StartRound()
         {
+            base.StartRound();
             DrawTile();
         }
     }

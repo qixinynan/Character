@@ -12,14 +12,19 @@ namespace Manager
     {
         private readonly CharacterResources _characterResources = new CharacterResources();
         
-
-        public void ReadTileData(string path)
+        public void ReadTileData(string resourcePathWithoutExtension)
         {
-            string filePath = Path.Combine(Application.dataPath, path);
-
             try
             {
-                using var reader = new StreamReader(filePath, Encoding.UTF8);
+                // 通过 Resources.Load 加载 Resources 下的 TextAsset
+                TextAsset csvAsset = Resources.Load<TextAsset>(resourcePathWithoutExtension);
+                if (csvAsset == null)
+                {
+                    Debug.LogError($"无法加载资源：Resources/{resourcePathWithoutExtension}.csv");
+                    return;
+                }
+
+                using var reader = new StringReader(csvAsset.text);
                 using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
 
                 // 跳过表头
@@ -37,11 +42,13 @@ namespace Manager
                     };
 
                     if (charData.Components != null)
+                    {
                         foreach (var component in charData.Components)
                         {
                             if (!string.IsNullOrEmpty(component))
                                 _characterResources.AddComponent(component);
                         }
+                    }
 
                     _characterResources.AddCharacter(charData);
                 }

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Game.Player;
+using JetBrains.Annotations;
 using UnityEngine;
 using Util;
 
@@ -8,17 +10,18 @@ namespace Game.GameRule
     public class BasicGameRule : IGameRule
     {
         private CharacterResources _characterResources;
+        private readonly List<TileData> _tileCardPoolList = new List<TileData>();
+        private readonly int _cardPoolCount = 5; // TODO: to config
 
         public void Init(CharacterResources characterResources)
         {
             this._characterResources = characterResources;
         }
 
-        public List<TileData> GenerateTiles(int count)
+        private void FullTileCardPool()
         {
             var frequencies = _characterResources.GetComponents();
-            var tileDatas = new List<TileData>();
-
+            _tileCardPoolList.Clear();
             // 构建权重池
             List<string> weightedPool = new();
             foreach (var pair in frequencies)
@@ -29,23 +32,35 @@ namespace Game.GameRule
                 }
             }
 
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < _cardPoolCount; i++)
             {
                 if (weightedPool.Count > 0)
                 {
                     int randomIndex = UnityEngine.Random.Range(0, weightedPool.Count);
                     string component = weightedPool[randomIndex];
-                    tileDatas.Add(new TileData(i, component));
+                    _tileCardPoolList.Add(new TileData(i, component));
                 }
             }
-
-            return tileDatas;
+        }
+            
+        public List<TileData> GenerateTiles(int count)
+        { 
+            List<TileData> tileData = new List<TileData>();
+            for (int i = 0; i < count; i++)
+            {
+                if (_tileCardPoolList.Count <= 0)
+                    FullTileCardPool();
+                tileData.Add(_tileCardPoolList[^1]);
+                _tileCardPoolList.RemoveAt(_tileCardPoolList.Count -1); 
+            }
+            
+            return tileData;
         }
 
 
         public int GetFirstGenerateTileCount()
         {
-            return 13;
+            return 13; // TODO: maybe in config and move config instance to BasicGameRule class
         }
 
         public Result IsTilesPlayable(List<TileData> tiles)
@@ -71,6 +86,16 @@ namespace Game.GameRule
             }
 
             return new Result(ResultType.Error, "数量很多目前没有实现"); // TODO
+        }
+
+        public bool CheckWin(BasePlayer player)
+        {
+            if (player.HandTiles.Count == 0)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

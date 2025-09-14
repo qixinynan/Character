@@ -38,7 +38,7 @@ namespace Manager
             return GetHumanPlayer();
         }
 
-        public bool IsPlayerRound()
+        public bool IsHumanPlayerRound()
         {
             return GetCurrentPlayer().Id == _humanPlayerId;
         }
