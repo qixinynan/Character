@@ -14,7 +14,7 @@ namespace Manager
         public GameConfig gameConfig;
 
         private readonly TileDataManager _tileDataManager = new TileDataManager();
-        private readonly PlayerManager _playerManager = new PlayerManager();
+        public readonly PlayerManager PlayerManager = new PlayerManager();
         private IGameRule _gameRule;
         // private List<TileData> _tileDatas;
 
@@ -38,7 +38,7 @@ namespace Manager
             _tileDataManager.ReadTileData(gameConfig.characterDataPath);
             _gameRule = new BasicGameRule();
             _gameRule.Init(_tileDataManager.GetCharacterResources());            
-            _playerManager.Init(_gameRule);
+            PlayerManager.Init(_gameRule);
             
             // Init EventManager
             EventManager.OnTilesPlayed += PlayTilesHandler;
@@ -52,13 +52,13 @@ namespace Manager
         // 发牌
         void InitTiles()
         {
-            _playerManager.InitTiles(); 
+            PlayerManager.InitTiles(); 
         }
         
         void StartRound()
         {
             Debug.Log("GameManager.StartRound");
-            var player = _playerManager.NextPlayer();
+            var player = PlayerManager.NextPlayer();
             player.StartRound();
             player.OnRoundEnd += EndRound; // 注意是等于,不然越来越多
             EventManager.OnAnyRoundStart?.Invoke();
@@ -68,7 +68,7 @@ namespace Manager
         {
             Debug.Log("GameManager.EndRound");
             // 检测是否胜利
-            if (_gameRule.CheckWin(_playerManager.GetCurrentPlayer()))
+            if (_gameRule.CheckWin(PlayerManager.GetCurrentPlayer()))
             {
                 EventManager.OnGameOver?.Invoke();
             } 
@@ -80,7 +80,7 @@ namespace Manager
 
         void PlayTilesHandler(List<TileData> tiles)
         {
-            if (!_playerManager.IsHumanPlayerRound())
+            if (!PlayerManager.IsHumanPlayerRound())
             {
                 Debug.LogError("不在玩家回合");
                 return;
@@ -88,7 +88,7 @@ namespace Manager
             var result = _gameRule.IsTilesPlayable(tiles);
             if (result.IsOk())
             {
-                _playerManager.GetCurrentPlayer().PlayTiles(tiles);
+                PlayerManager.GetCurrentPlayer().PlayTiles(tiles);
             }
             else
             {

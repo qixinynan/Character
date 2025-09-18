@@ -1514,6 +1514,7 @@ MonoBehaviour:
   tilePanel: {fileID: 1436996836}
   dialogPanel: {fileID: 918346009}
   playButton: {fileID: 718904006}
+  canvas: {fileID: 0}
 --- !u!1 &918346005
 GameObject:
   m_ObjectHideFlags: 0
@@ -1676,7 +1677,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u76F4\u63A5\u80DC\u5229"
+  m_Text: "\u66F4\u65B0\u724CUI\n"
 --- !u!222 &1027213400
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2374,7 +2375,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1671876618}
   m_OnClick:
     m_PersistentCalls:
@@ -2771,6 +2772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exitGameBtn: {fileID: 459913846}
+  refreshTileUIBtn: {fileID: 1671876617}
 --- !u!1 &2043229954
 GameObject:
   m_ObjectHideFlags: 0

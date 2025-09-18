@@ -38,5 +38,10 @@ namespace Game
         {
             return new TileChangeInfo(TileOperationType.Play, tileList, playedData);
         }
+        
+        public static TileChangeInfo RefreshInfo(List<TileData> tileList, TileData playedData)
+        {
+            return new TileChangeInfo(TileOperationType.Refresh, tileList, playedData);
+        }
     }
 }

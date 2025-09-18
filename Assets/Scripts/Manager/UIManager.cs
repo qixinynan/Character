@@ -13,10 +13,12 @@ namespace Manager
         
         public Button playButton;
         public static UIManager Instance;
+        [HideInInspector] public Canvas canvas;
 
         private void Awake()
         {
             Instance = this;
+            canvas = GetComponent<Canvas>();
         }
 
         private void Start()

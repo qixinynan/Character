@@ -39,6 +39,7 @@ namespace UI
                 item.MoveXTo(rectTransform.sizeDelta.x * index);
             }
         }
+        
 
         private TileItem NewTile(TileData data)
         {
@@ -49,13 +50,38 @@ namespace UI
                 // 动画和其他逻辑
                 item.ToggleSelect();
             };
+            item.OnDragEnd += OnTileDragEnd;
             return item;
+        }
+
+        private void OnTileDragEnd()
+        {
+            // 1. 按照 TileItem 的 X 坐标重新排序 _tileItems
+            _tileItems.Sort((a, b) =>
+                a.GetComponent<RectTransform>().anchoredPosition.x
+                    .CompareTo(b.GetComponent<RectTransform>().anchoredPosition.x)
+            );
+
+            // 2. 根据排序更新玩家 HandTiles
+            var player = GameManager.Instance.PlayerManager.GetCurrentPlayer();
+            player.HandTiles = _tileItems.Select(item => item.GetData()).ToList();
+
+            // 3. 调整 UI 位置，让每个 TileItem 对齐
+            foreach (var item in _tileItems)
+            {
+                PlaceTilePosition(item);
+            }
+        }
+
+        public void UpdateTilesUIForDebug()
+        {
+            UpdateTiles(new TileChangeInfo(TileOperationType.Refresh, GameManager.Instance.PlayerManager.GetCurrentPlayer().HandTiles));
         }
         
         private void UpdateTiles(TileChangeInfo info)
         {
             // 记录已有的牌的数据，用来比较
-            List<TileData> oldTileDatas = new List<TileData>(_tileItems.Select(item => item.GetData()));
+            List<TileData> oldTileData = new List<TileData>(_tileItems.Select(item => item.GetData()));
             // 打出牌
             foreach (var item in _tileItems.ToList())
             {
@@ -71,7 +97,7 @@ namespace UI
             foreach (var data in info.TileList)
             {
                 // 如果是新增的牌
-                if (!oldTileDatas.Contains(data))
+                if (!oldTileData.Contains(data))
                 {
                     var item = NewTile(data);
                     

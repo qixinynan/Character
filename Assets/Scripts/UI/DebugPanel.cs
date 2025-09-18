@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Manager;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DebugPanel : MonoBehaviour
 {
     public Button exitGameBtn;
+
+    public Button refreshTileUIBtn;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +20,11 @@ public class DebugPanel : MonoBehaviour
 #endif
 
        }); 
+       
+       refreshTileUIBtn.onClick.AddListener(() =>
+       {
+           UIManager.Instance.tilePanel.UpdateTilesUIForDebug();
+       });
     }
 
     // Update is called once per frame
