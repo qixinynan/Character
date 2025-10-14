@@ -35,7 +35,7 @@ namespace Manager
         private void Init()
         {
             // Init GameRule
-            _tileDataManager.ReadTileData(gameConfig.characterDataPath);
+            _tileDataManager.ReadTileData();
             _gameRule = new BasicGameRule();
             _gameRule.Init(_tileDataManager.GetCharacterResources());            
             PlayerManager.Init(_gameRule);
@@ -86,8 +86,10 @@ namespace Manager
                 return;
             }
             var result = _gameRule.IsTilesPlayable(tiles);
-            if (result.IsOk())
+            if (result.IsOk)
             {
+                if(result.Data != "")
+                    EventManager.OnCharacterComposed?.Invoke(result.Data);
                 PlayerManager.GetCurrentPlayer().PlayTiles(tiles);
             }
             else

@@ -10,10 +10,21 @@ namespace Manager
     {
         // TODO: 修改成内部触发
         // public static UnityAction<TileData> OnTilePlayed;
-        public static Action<List<TileData>> OnTilesPlayed;
+        public static Action<List<TileData>> OnTilesPlayed; // 当牌被打出，不一定成功打出
+        public static Action<string> OnCharacterComposed; // 当某个字被成功组合打出
         public static Action<TileChangeInfo> OnTilesChanged;
         public static Action OnAnyRoundStart;
         public static Action OnAnyRoundEnd;
         public static Action OnGameOver;
+
+        public static void ClearEvents()
+        {
+            OnTilesPlayed = null;
+            OnCharacterComposed = null;
+            OnTilesChanged = null;
+            OnAnyRoundStart = null;
+            OnAnyRoundEnd = null;
+            OnGameOver = null;
+        }
     }
 }

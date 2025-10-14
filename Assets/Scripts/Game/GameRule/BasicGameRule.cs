@@ -63,14 +63,14 @@ namespace Game.GameRule
             return 13; // TODO: maybe in config and move config instance to BasicGameRule class
         }
 
-        public Result IsTilesPlayable(List<TileData> tiles)
+        public Result<string> IsTilesPlayable(List<TileData> tiles)
         {
             if (tiles == null || tiles.Count == 0)
-                return new Result(ResultType.Error, "未选择任何牌");
+                return Result<string>.Error("未选择任何牌");
             
             if (tiles.Count == 1)
             {
-                return Result.Ok;
+                return Result<string>.OkResult(""); // 过牌
             }
 
             Debug.Log("开始检测组合字, 目前已存在的字数量: " + _characterResources.GetAllCharacters().Count());
@@ -81,11 +81,11 @@ namespace Game.GameRule
                 if (selectedComponents.SetEquals(components))
                 {
                     Debug.Log("可以组成汉字");
-                    return Result.Ok;
+                    return Result<string>.OkResult(character.Character);
                 }
             }
 
-            return new Result(ResultType.Error, "数量很多目前没有实现"); // TODO
+            return Result<string>.Error("没有此组合");
         }
 
         public bool CheckWin(BasePlayer player)

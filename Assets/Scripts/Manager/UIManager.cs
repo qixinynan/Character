@@ -10,6 +10,7 @@ namespace Manager
     {
         public TilePanel tilePanel;
         public DialogPanel dialogPanel;
+        public PopupManager popupManager;
         
         public Button playButton;
         public static UIManager Instance;
@@ -30,6 +31,14 @@ namespace Manager
         {
             // TODO: Filter out the case where no tiles are selected
             EventManager.OnTilesPlayed.Invoke(tilePanel.GetSelectedTiles().Select(e => e.GetData()).ToList());
+        }
+
+        public void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                popupManager.ShowPausePanel();
+            }
         }
 
         public void ShowDialog(string msg)

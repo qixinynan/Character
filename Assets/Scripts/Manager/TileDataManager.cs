@@ -12,15 +12,16 @@ namespace Manager
     {
         private readonly CharacterResources _characterResources = new CharacterResources();
         
-        public void ReadTileData(string resourcePathWithoutExtension)
+        public void ReadTileData()
         {
+            var gameConfig = GameManager.Instance.gameConfig;
             try
             {
                 // 通过 Resources.Load 加载 Resources 下的 TextAsset
-                TextAsset csvAsset = Resources.Load<TextAsset>(resourcePathWithoutExtension);
+                TextAsset csvAsset = Resources.Load<TextAsset>(gameConfig.characterDataPath);
                 if (csvAsset == null)
                 {
-                    Debug.LogError($"无法加载资源：Resources/{resourcePathWithoutExtension}.csv");
+                    Debug.LogError($"无法加载资源：Resources/{gameConfig.characterDataPath}.csv");
                     return;
                 }
 
@@ -35,10 +36,8 @@ namespace Manager
                 {
                     var charData = new CharacterData
                     {
-                        Character = csv.GetField(1)?.Trim(),
-                        Traditional = csv.GetField(2)?.Trim(),
-                        Pinyin = csv.GetField(3)?.Trim(),
-                        Components = csv.GetField(4)?.Trim().Split('，').ToList()
+                        Character = csv.GetField(gameConfig.characterIndexInCsv)?.Trim(),
+                        Components = csv.GetField(gameConfig.componentIndexInCsv)?.Trim().Split('，').ToList()
                     };
 
                     if (charData.Components != null)

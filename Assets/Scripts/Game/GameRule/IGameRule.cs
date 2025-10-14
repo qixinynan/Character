@@ -10,7 +10,7 @@ namespace Game.GameRule
         public List<TileData> GenerateTiles(int count);
 
         public int GetFirstGenerateTileCount();
-        public Result IsTilesPlayable(List<TileData> tiles);
+        public Result<string> IsTilesPlayable(List<TileData> tiles);
         public bool CheckWin(BasePlayer player);
     }
 }

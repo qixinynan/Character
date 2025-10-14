@@ -8,6 +8,7 @@ namespace Manager
     {
 
         public GameOverPanel gameOverPanel;
+        public PausePanel pausePanel;
         private void Start()
         {
             EventManager.OnGameOver += ShowGameOverPanel;
@@ -16,6 +17,11 @@ namespace Manager
         public void ShowGameOverPanel()
         {
             gameOverPanel.Show();
+        }
+
+        public void ShowPausePanel()
+        {
+            pausePanel.Show();
         }
     }
 }

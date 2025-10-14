@@ -16,13 +16,21 @@ namespace UI
 
         private readonly List<TileItem> _tileItems = new List<TileItem>();
 
-        private void Start()
+        private void OnEnable()
         {
             EventManager.OnTilesChanged += UpdateTiles;
-            EventManager.OnAnyRoundEnd += (() =>
-            {
-                _tileItems.ForEach(item => item.isNewDraw = false);
-            });
+            EventManager.OnAnyRoundEnd += ResetTiles;
+        }
+
+        private void ResetTiles()
+        {
+            _tileItems.ForEach(item => item.isNewDraw = false);
+        }
+
+        private void OnDisable()
+        {
+            EventManager.OnTilesChanged -= UpdateTiles;
+            EventManager.OnAnyRoundEnd -= ResetTiles; // 如果是匿名委托，只能这样可能导致bug，请不要用匿名了
         }
 
         private void PlaceTilePosition(TileItem item)
@@ -87,6 +95,7 @@ namespace UI
             {
                 if (!info.TileList.Contains(item.GetData()))
                 {
+                    if (!item) {continue;}
                     _tileItems.Remove(item);
                     DOTween.Kill(item.GetComponent<RectTransform>());
                     Destroy(item.gameObject);
