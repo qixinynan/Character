@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using Configs;
 using Game;
 using Game.GameRule;
+using Game.Player;
+using UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Manager
 {
@@ -16,6 +19,7 @@ namespace Manager
         private readonly TileDataManager _tileDataManager = new TileDataManager();
         public readonly PlayerManager PlayerManager = new PlayerManager();
         private IGameRule _gameRule;
+        [SerializeField] private bool forceVsAIMode = false;
         // private List<TileData> _tileDatas;
 
 
@@ -34,11 +38,20 @@ namespace Manager
 
         private void Init()
         {
+            bool isVsAIMode = IsVsAIMode();
             // Init GameRule
             _tileDataManager.ReadTileData();
-            _gameRule = new BasicGameRule();
+            _gameRule = isVsAIMode ? new VsAIGameRule() : new BasicGameRule();
             _gameRule.Init(_tileDataManager.GetCharacterResources());            
-            PlayerManager.Init(_gameRule);
+            if (isVsAIMode)
+            {
+                PlayerManager.InitVsAI(_gameRule);
+                EnsureAIBattlePanelExistsInScene();
+            }
+            else
+            {
+                PlayerManager.Init(_gameRule);
+            }
             
             // Init EventManager
             EventManager.OnTilesPlayed += PlayTilesHandler;
@@ -59,18 +72,31 @@ namespace Manager
         {
             Debug.Log("GameManager.StartRound");
             var player = PlayerManager.NextPlayer();
+            if (player == null)
+            {
+                Debug.LogError("没有可用玩家, 无法开始回合");
+                return;
+            }
+
+            player.OnRoundEnd -= EndRound;
+            player.OnRoundEnd += EndRound;
             player.StartRound();
-            player.OnRoundEnd += EndRound; // 注意是等于,不然越来越多
             EventManager.OnAnyRoundStart?.Invoke();
+            if (player is AIPlayer aiPlayer)
+            {
+                aiPlayer.PlayAutoTurn();
+            }
         }
 
         void EndRound()
         {
             Debug.Log("GameManager.EndRound");
             // 检测是否胜利
-            if (_gameRule.CheckWin(PlayerManager.GetCurrentPlayer()))
+            var currentPlayer = PlayerManager.GetCurrentPlayer();
+            if (currentPlayer != null && _gameRule.CheckWin(currentPlayer))
             {
                 EventManager.OnGameOver?.Invoke();
+                return;
             } 
             
             
@@ -96,6 +122,24 @@ namespace Manager
             {
                 Debug.LogWarning("出牌检测失败:"+ result.Message);
             }
+        }
+
+        private bool IsVsAIMode()
+        {
+            if (forceVsAIMode)
+            {
+                return true;
+            }
+
+            return SceneManager.GetActiveScene().name.Contains("VsAI");
+        }
+
+        private void EnsureAIBattlePanelExistsInScene()
+        {
+            if (FindFirstObjectByType<AIBattlePanel>() == null)
+            {
+                Debug.LogWarning("VsAI场景缺少 AIBattlePanel，请在 Canvas 下配置该面板。");
+            } 
         }
 
 

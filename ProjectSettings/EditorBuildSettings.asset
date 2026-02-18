@@ -8,5 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/GameVsAI.unity
+    guid: 84539bfee87945668e976041b5864069
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

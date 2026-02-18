@@ -19,9 +19,11 @@ namespace Game.Player
             _gameRule = gameRule;
         }
 
+        protected IGameRule GameRule => _gameRule;
+        protected virtual bool EnableTileUISync => true;
+
         public virtual void StartRound()
         {
-            OnRoundEnd = null;
         }
 
         private void AddTile(TileData tile)
@@ -47,7 +49,12 @@ namespace Game.Player
         
         void UpdateTileUI(TileChangeInfo i)
         {
-            EventManager.OnTilesChanged.Invoke(i);
+            if (!EnableTileUISync)
+            {
+                return;
+            }
+
+            EventManager.OnTilesChanged?.Invoke(i);
         } 
         protected virtual TileData DrawTile()
         {
