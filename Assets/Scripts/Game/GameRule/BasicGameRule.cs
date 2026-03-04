@@ -74,11 +74,16 @@ namespace Game.GameRule
             }
 
             Debug.Log("开始检测组合字, 目前已存在的字数量: " + _characterResources.GetAllCharacters().Count());
-            var selectedComponents = tiles.Select(t => t.Content).ToHashSet();
+            var selectedComponents = BuildComponentCounter(tiles.Select(t => t.Content));
             foreach (var character in _characterResources.GetAllCharacters())
             {
-                var components = character.Components.ToHashSet();
-                if (selectedComponents.SetEquals(components))
+                if (character.Components == null || character.Components.Count == 0)
+                {
+                    continue;
+                }
+
+                var components = BuildComponentCounter(character.Components);
+                if (IsSameComponentCounter(selectedComponents, components))
                 {
                     Debug.Log("可以组成汉字");
                     return Result<string>.OkResult(character.Character);
@@ -96,6 +101,47 @@ namespace Game.GameRule
             }
 
             return false;
+        }
+
+        public void OnGameOver(BasePlayer winner)
+        {
+        }
+
+        private static Dictionary<string, int> BuildComponentCounter(IEnumerable<string> components)
+        {
+            Dictionary<string, int> counter = new Dictionary<string, int>();
+            foreach (var component in components)
+            {
+                if (string.IsNullOrEmpty(component))
+                {
+                    continue;
+                }
+
+                if (!counter.TryAdd(component, 1))
+                {
+                    counter[component]++;
+                }
+            }
+
+            return counter;
+        }
+
+        private static bool IsSameComponentCounter(Dictionary<string, int> left, Dictionary<string, int> right)
+        {
+            if (left.Count != right.Count)
+            {
+                return false;
+            }
+
+            foreach (var pair in left)
+            {
+                if (!right.TryGetValue(pair.Key, out int count) || count != pair.Value)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

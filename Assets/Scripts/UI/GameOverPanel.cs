@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace UI
 {
@@ -11,7 +12,7 @@ namespace UI
 
         public void Close()
         {
-            gameObject.SetActive(false);
+            SceneManager.LoadScene("StartUI");
         }
     }
 }

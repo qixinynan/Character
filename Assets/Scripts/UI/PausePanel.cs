@@ -16,17 +16,14 @@ namespace UI
         {
             exitGameButton.onClick.AddListener(() =>
             {
-                Application.Quit();
-#if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-#endif
-
+                SceneManager.LoadScene("StartUI");
             }); 
             
             replayButton.onClick.AddListener(() =>
             {
                 EventManager.ClearEvents();
-                SceneManager.LoadScene("Game");
+                
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             });
         }
 

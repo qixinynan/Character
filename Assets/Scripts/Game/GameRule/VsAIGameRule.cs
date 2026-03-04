@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Game.Player;
+using Manager;
 using Util;
 
 namespace Game.GameRule
@@ -45,6 +46,11 @@ namespace Game.GameRule
         public bool CheckWin(BasePlayer player)
         {
             return _basicRule.CheckWin(player);
+        }
+
+        public void OnGameOver(BasePlayer winner)
+        {
+            BattleRecordManager.Instance.AddRecord(winner.IsHumanPlayer);
         }
 
         public List<TileData> DecideAiPlayTiles(List<TileData> handTiles)

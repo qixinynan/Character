@@ -21,6 +21,8 @@ namespace Game.Player
 
         protected IGameRule GameRule => _gameRule;
         protected virtual bool EnableTileUISync => true;
+        
+        public virtual bool IsHumanPlayer => false;
 
         public virtual void StartRound()
         {

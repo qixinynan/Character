@@ -12,24 +12,33 @@ namespace UI
 
         private void OnEnable()
         {
-            EventManager.OnCharacterComposed += OnCharacterComposed;
+            EventManager.OnPlayerCharacterComposed += OnCharacterComposed;
+            EventManager.OnAICharacterComposed += OnAIComposed;
         }
 
         private void OnDisable()
         {
-            EventManager.OnCharacterComposed -= OnCharacterComposed;
+            EventManager.OnPlayerCharacterComposed -= OnCharacterComposed;
+            EventManager.OnAICharacterComposed -= OnAIComposed;
         }
 
         private void OnCharacterComposed(string obj)
         {
-            AddCharacter(obj);   
+            AddCharacter(obj, Color.white, Color.black);   
+        }
+
+        private void OnAIComposed(string obj)
+        {
+            AddCharacter(obj, Color.red, Color.white);
         }
         
 
-        public void AddCharacter(string character)
+        public void AddCharacter(string character, Color color, Color textColor)
         {
             var obj = Instantiate(characterViewPrefab, transform);
             obj.SetText(character);
+            obj.SetColor(color);
+            obj.SetTextColor(textColor);
         }
     }
 }

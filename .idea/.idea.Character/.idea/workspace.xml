@@ -5,11 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a33088cd-9566-4283-bd74-6e346650b8a0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/BattleRecordManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/BattleRecordManager.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Character/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Character/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CharacterView.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/CharacterView.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TileItem.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TileItem.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameVsAI.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameVsAI.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/GameRule/BasicGameRule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/GameRule/BasicGameRule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/GameRule/IGameRule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/GameRule/IGameRule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/GameRule/VsAIGameRule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/GameRule/VsAIGameRule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/Player/AIPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/Player/AIPlayer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/Player/BasePlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/Player/BasePlayer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/Player/HumanPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/Player/HumanPlayer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/EventManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/EventManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/PlayerManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/PopupManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/PopupManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/AIBattlePanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/AIBattlePanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/CharacterView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/CharacterView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/CharacterViewPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/CharacterViewPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/GameOverPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/GameOverPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PausePanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PausePanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Sans/SOURCEHANSANSCN-REGULAR SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Sans/SOURCEHANSANSCN-REGULAR SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,8 +53,10 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Immediate Window" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Manager/BattleRecordManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Manager/TileDataManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/BattleRecordItem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/BattleRecordPanel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/CharacterView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/CharacterViewPanel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/PausePanel.cs" root0="FORCE_HIGHLIGHTING" />
@@ -59,27 +78,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "XThreadsFramesViewSplitterKey": "0.51111114",
-    "git-widget-placeholder": "new",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.51111114&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;new&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/Bin/macOS/2.app/Contents/MacOS/Character" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Bin/macOS/4/字麻将-4.0.app/Contents/MacOS/字麻将" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Bin/macOS/2.app/Contents/MacOS" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -161,7 +180,9 @@
       <workItem from="1760362538711" duration="167000" />
       <workItem from="1760362788449" duration="1558000" />
       <workItem from="1760423473517" duration="5424000" />
-      <workItem from="1771397998712" duration="390000" />
+      <workItem from="1771397998712" duration="1256000" />
+      <workItem from="1772547671826" duration="671000" />
+      <workItem from="1772604171645" duration="5275000" />
     </task>
     <task id="LOCAL-00001" summary="3.0">
       <option name="closed" value="true" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Player;
 using UI;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace Manager
             EventManager.OnGameOver += ShowGameOverPanel;
         }
 
-        public void ShowGameOverPanel()
+        public void ShowGameOverPanel(BasePlayer player)
         {
             gameOverPanel.Show();
         }

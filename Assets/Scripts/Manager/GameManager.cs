@@ -95,7 +95,8 @@ namespace Manager
             var currentPlayer = PlayerManager.GetCurrentPlayer();
             if (currentPlayer != null && _gameRule.CheckWin(currentPlayer))
             {
-                EventManager.OnGameOver?.Invoke();
+                EventManager.OnGameOver?.Invoke(currentPlayer);
+                _gameRule.OnGameOver(currentPlayer);
                 return;
             } 
             
@@ -115,7 +116,7 @@ namespace Manager
             if (result.IsOk)
             {
                 if(result.Data != "")
-                    EventManager.OnCharacterComposed?.Invoke(result.Data);
+                    EventManager.OnPlayerCharacterComposed?.Invoke(result.Data);
                 PlayerManager.GetCurrentPlayer().PlayTiles(tiles);
             }
             else

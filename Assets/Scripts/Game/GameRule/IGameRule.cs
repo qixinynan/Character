@@ -12,5 +12,6 @@ namespace Game.GameRule
         public int GetFirstGenerateTileCount();
         public Result<string> IsTilesPlayable(List<TileData> tiles);
         public bool CheckWin(BasePlayer player);
+        public void OnGameOver(BasePlayer winner);
     }
 }

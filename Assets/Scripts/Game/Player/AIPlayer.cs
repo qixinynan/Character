@@ -15,6 +15,7 @@ namespace Game.Player
         }
 
         protected override bool EnableTileUISync => false;
+        public override bool IsHumanPlayer => false;
 
         public override void StartRound()
         {
@@ -45,7 +46,7 @@ namespace Game.Player
             if (playResult.IsOk && !string.IsNullOrEmpty(playResult.Data))
             {
                 EmitLog("AI成功组字: " + playResult.Data);
-                EventManager.OnCharacterComposed?.Invoke(playResult.Data);
+                EventManager.OnAICharacterComposed?.Invoke(playResult.Data);
             }
 
             PlayTiles(playTiles);

@@ -12,5 +12,15 @@ namespace UI
         {
             text.text = t;
         }
+
+        public void SetColor(Color c)
+        {
+            GetComponent<Image>().color = c;
+        }
+        
+        public void SetTextColor(Color c)
+        {
+            text.color = c;
+        }
     }
 }
